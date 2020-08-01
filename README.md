@@ -8,13 +8,15 @@
 ## Configure vcpkg
 
 On Windows:
-`thirdparty\vcpkg\bootstrap-vcpkg.bat`
-On Unix:
-`./thirdparty/vcpkg/bootstrap-vcpkg.sh`
+    `thirdparty\vcpkg\bootstrap-vcpkg.bat`
 
-## Install next packages
+On Unix:
+    `./thirdparty/vcpkg/bootstrap-vcpkg.sh`
+
+## Install packages
 
 * sdl2
+* imgui\[sdl2-binding\]
 
 # Build
 
