@@ -5,7 +5,7 @@
 
 int wider::core::sdl2::init()
 {
-    return SDL_Init(0);
+    return SDL_Init(SDL_INIT_VIDEO);
 }
 
 #endif // WIDER_SDL2_SYSTEM

@@ -3,7 +3,9 @@
 
 namespace wider::core
 {
-    int wider_main(int argc, char *argv[]);
+    class WiderApp;
+
+    int wider_main(int argc, char *argv[], void (*evCallback)(WiderApp &app));
 }
 
 #endif // MAIN_HPP
