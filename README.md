@@ -1,5 +1,8 @@
 # wider
 
+Our goals is to make fast, extensible and cross-platform IDE.
+No garbage collectors, no GUI freaze or lags.
+
 # Build Requirements
 
 * CMake
@@ -15,8 +18,7 @@ On Unix:
 
 ## Install packages
 
-* sdl2
-* imgui\[sdl2-binding\]
+`./thirdparty/vcpkg/vcpkg --x-manifest-root=. install`
 
 # Build
 

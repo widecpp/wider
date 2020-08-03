@@ -1,0 +1,13 @@
+{
+  "name": "wider",
+  "version-string": "0.0.1",
+  "homepage": "https://github.com/faserg1/wider",
+  "description": "Fresh, fast, extensible and cross-platform IDE.",
+  "dependencies": [
+    "sdl2",
+    {
+      "name": "imgui",
+      "features": ["sdl2-binding"]
+    }
+  ]
+}
