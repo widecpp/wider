@@ -8,6 +8,9 @@
     {
       "name": "imgui",
       "features": ["sdl2-binding"]
-    }
+    },
+    "toml11",
+    "nlohmann-json"
   ]
 }
+
