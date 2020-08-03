@@ -18,11 +18,13 @@ On Unix:
 
 ## Install packages
 
-`./thirdparty/vcpkg/vcpkg --x-manifest-root=. install`
+`./thirdparty/vcpkg/vcpkg --x-manifest-root=. install [--triplet {triplet}]`
+
+You can use a specific triplet for package installation, e.g. `--triplet x64-windows` or `--triplet x64-linux`.
 
 # Build
 
 ```mkdir build
 cd build
-cmake -G [your favourite compiler] -DCMAKE_TOOLCHAIN_FILE=../thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+cmake [-G "{your favourite compiler configuration}"] -DCMAKE_TOOLCHAIN_FILE=../thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake ..
 ```
