@@ -24,5 +24,5 @@ On Unix:
 
 ```mkdir build
 cd build
-cmake -G [your favourite compiler] -DCMAKE_TOOLCHAIN_FILE=..\thirdparty\vcpkg\scripts\buildsystems\vcpkg.cmake ..
+cmake -G [your favourite compiler] -DCMAKE_TOOLCHAIN_FILE=../thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake ..
 ```

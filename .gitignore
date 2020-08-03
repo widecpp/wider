@@ -14,6 +14,9 @@ _deps
 # Artifacts
 /build
 
+# Deps install
+vcpkg_installed
+
 # IDE settings (wwwwwwwwwwwwwwwwwww lol)
 .vs
 .vscode
