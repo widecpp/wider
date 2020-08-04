@@ -3,7 +3,10 @@
 
 namespace wider::api::loader
 {
-
+    class LibraryLoader
+    {
+    public:
+    };
 }
 
 #endif // API_LOADER_HPP
