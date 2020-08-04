@@ -11,7 +11,8 @@
       "features": ["sdl2-binding"]
     },
     "toml11",
-    "nlohmann-json"
+    "nlohmann-json",
+    "boost-dll"
   ]
 }
 

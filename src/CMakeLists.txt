@@ -4,6 +4,8 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SRC_FILES})
 set(WIDER_SOURCE ${SRC_FILES})
 #Executable
 add_executable(wider WIN32 ${WIDER_SOURCE})
+#Compiler dirs
+target_include_directories(wider PRIVATE ${BOOST_DLL_INCLUDE_DIRS})
 #Compile options
 target_arch_compile_options(wider)
 #Linking
