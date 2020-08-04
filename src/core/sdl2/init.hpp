@@ -4,7 +4,7 @@
 #ifdef WIDER_SDL2_SYSTEM
 namespace wider::core::sdl2
 {
-    int init();
+    bool init();
 }
 #endif // WIDER_SDL2_SYSTEM
 

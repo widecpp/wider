@@ -3,11 +3,11 @@
 #ifdef WIDER_SDL2_SYSTEM
 #include <SDL2/SDL.h>
 
-int wider::core::sdl2::init()
+bool wider::core::sdl2::init()
 {
     const auto initCode = SDL_Init(SDL_INIT_VIDEO);
     if (initCode != 0)
-        return initCode;
+        return false;
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
@@ -40,7 +40,7 @@ int wider::core::sdl2::init()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
     #endif
     
-    return initCode;
+    return true;
 }
 
 #endif // WIDER_SDL2_SYSTEM
