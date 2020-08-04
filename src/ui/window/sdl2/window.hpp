@@ -16,6 +16,7 @@ namespace wider::ui::window::sdl2
         ~Window();
     private:
         SDL_Window* window_ = nullptr;
+        SDL_GLContext gl_context_ = nullptr;
     };
 }
 

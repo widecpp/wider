@@ -9,3 +9,4 @@ target_arch_compile_options(wider)
 #Linking
 target_link_libraries(wider PRIVATE SDL2::SDL2 SDL2::SDL2main)
 target_link_libraries(wider PRIVATE imgui::imgui)
+target_link_directories(wider PRIVATE OpenGL::GL)

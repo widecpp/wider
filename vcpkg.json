@@ -5,6 +5,7 @@
   "description": "Fresh, fast, extensible and cross-platform IDE.",
   "dependencies": [
     "sdl2",
+    "opengl",
     {
       "name": "imgui",
       "features": ["sdl2-binding"]
