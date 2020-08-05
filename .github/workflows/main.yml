@@ -12,15 +12,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Checkout submodules
+      run: git submodule init --update --recursive
+
     - name: Configure VCPKG
-      run: $GITHUB_WORKSPACE/thirdparty/vcpkg/bootstrap-vcpkg.sh
+      run: ./thirdparty/vcpkg/bootstrap-vcpkg.sh
       
     - name: Install Dependencies
-      run: $GITHUB_WORKSPACE/thirdparty/vcpkg/vcpkg --x-manifest-root=. install
+      run: ./thirdparty/vcpkg/vcpkg --x-manifest-root=. install
 
     - name: Build project
       run: |
         mkdir build
         cd build
-        cmake -DCMAKE_TOOLCHAIN_FILE=../thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake $GITHUB_WORKSPACE
+        cmake -DCMAKE_TOOLCHAIN_FILE=../thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake ..
         make
