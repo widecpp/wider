@@ -11,13 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: openrndr/setup-opengl@v1
 
     - name: Checkout submodules
       run: git submodule update --init --recursive
 
     - name: Configure VCPKG
       run: ./thirdparty/vcpkg/bootstrap-vcpkg.sh
+
+    - name: Install Dependency libraries
+      run: sudo apt-get install libgl1-mesa-dev
       
     - name: Install Dependencies
       run: ./thirdparty/vcpkg/vcpkg --x-manifest-root=. install
