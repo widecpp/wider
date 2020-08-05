@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Configure VCPKG
+      run: ./thirdparty/vcpkg/bootstrap-vcpkg.sh
+      
+    - name: Install Dependencies
+      run: ./thirdparty/vcpkg/vcpkg --x-manifest-root=. install
+
+    - name: Build project
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_TOOLCHAIN_FILE=../thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+        make
