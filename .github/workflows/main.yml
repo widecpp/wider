@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install libs
+      run: apt-get install -y libgl1-mesa-dev
+
     - name: Checkout submodules
       run: git submodule update --init --recursive
 
