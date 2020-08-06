@@ -3,7 +3,9 @@
 
 #ifdef WIDER_SDL2_SYSTEM
 
+#include <glad/glad.h>
 #include <SDL_opengl.h>
+
 using namespace wider::ui::window::sdl2;
 
 Window::Window(int w, int h)

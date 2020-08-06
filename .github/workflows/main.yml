@@ -19,7 +19,16 @@ jobs:
       run: ./thirdparty/vcpkg/bootstrap-vcpkg.sh
 
     - name: Install Dependency libraries
-      run: sudo apt-get install libgl1-mesa-dev
+      run: sudo apt-get install libgl-dev tree
+      
+    - name: Cache Binary VCPKG
+      uses: actions/cache@v2.1.0
+      with:
+        path: |
+          $HOME/.cache/vcpkg
+          /home/runner/.cache/vcpkg
+          ./thirdparty/vcpkg/archives
+        key: vcpkg-archive3
       
     - name: Install Dependencies
       run: ./thirdparty/vcpkg/vcpkg --x-manifest-root=. install
@@ -28,5 +37,13 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DCMAKE_TOOLCHAIN_FILE=../thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+        cmake -DVCPKG_TARGET_TRIPLET=x64-linux ..
         make
+        
+    - name: Collect artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: |
+          ./build/src/wider
+          ./build/**/*.so

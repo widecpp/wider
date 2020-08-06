@@ -16,7 +16,9 @@ On Windows:
 On Unix:
     `./thirdparty/vcpkg/bootstrap-vcpkg.sh`
 
-## Install packages
+## Install dependencies
+
+On Unix, before run `vcpkg install`, check you have installed `libgl-dev`;
 
 `./thirdparty/vcpkg/vcpkg --x-manifest-root=. install [--triplet {triplet}]`
 
@@ -26,5 +28,5 @@ You can use a specific triplet for package installation, e.g. `--triplet x64-win
 
 ```mkdir build
 cd build
-cmake [-G "{your favourite compiler configuration}"] -DCMAKE_TOOLCHAIN_FILE=../thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+cmake [-G "{your favourite compiler configuration}"] -DVCPKG_TARGET_TRIPLET=x64-linux ..
 ```
