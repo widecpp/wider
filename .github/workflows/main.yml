@@ -16,9 +16,7 @@ jobs:
       run: git submodule update --init --recursive
 
     - name: Configure VCPKG
-      run: |
-        ./thirdparty/vcpkg/bootstrap-vcpkg.sh
-        ./thirdparty/vcpkg/vcpkg update
+      run: ./thirdparty/vcpkg/bootstrap-vcpkg.sh
 
     - name: Install Dependency libraries
       run: sudo apt-get install libgl1-mesa-dev
