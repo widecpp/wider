@@ -3,9 +3,6 @@
 
 #ifdef WIDER_SDL2_SYSTEM
 
-#include <glad/glad.h>
-#include <SDL_opengl.h>
-
 using namespace wider::ui::window::sdl2;
 
 Window::Window(int w, int h)
@@ -19,12 +16,7 @@ Window::Window(int w, int h)
         flags);
     if (!window_)
         throw std::runtime_error("Unable to create window!");
-    gl_context_ = SDL_GL_CreateContext(window_);
-    SDL_GL_MakeCurrent(window_, gl_context_);
-
-    SDL_GL_SetSwapInterval(1);
-
-    glViewport(0, 0, w, h);
+    configureGl(0, 0, w, h);
 }
 
 Window::~Window()

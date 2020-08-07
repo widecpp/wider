@@ -6,7 +6,7 @@ No garbage collectors, no GUI freaze or lags.
 # Build Requirements
 
 * CMake
-* vcpkg (instaled as submodule in thridpart/vcpkg)
+* vcpkg (instaled as submodule in thridparty/vcpkg)
 
 ## Configure vcpkg
 

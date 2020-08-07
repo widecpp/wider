@@ -17,6 +17,8 @@ namespace wider::ui::window::sdl2
     private:
         SDL_Window* window_ = nullptr;
         SDL_GLContext gl_context_ = nullptr;
+    private:
+        void configureGl(int x, int y, int w, int h);
     };
 }
 
