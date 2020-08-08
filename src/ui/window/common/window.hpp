@@ -9,6 +9,8 @@ namespace wider::ui::window
     {
     public:
         virtual ~Window() = default;
+        virtual void begin() = 0;
+        virtual void end() = 0;
         static std::unique_ptr<Window> create(int w, int h);
     protected:
         Window() = default;

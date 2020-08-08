@@ -17,10 +17,12 @@ Window::Window(int w, int h)
     if (!window_)
         throw std::runtime_error("Unable to create window!");
     configureGl(0, 0, w, h);
+    initImgui();
 }
 
 Window::~Window()
 {
+    stopImgui();
     SDL_DestroyWindow(window_);
 }
 
