@@ -4,6 +4,7 @@
 #include "../../ui/window/common/window.hpp"
 #include "../../ui/imgui/init.hpp"
 #include "../../ui/render/common/render-loop.hpp"
+#include "../../ui/layout/main-layout.hpp"
 
 int wider::core::wider_main(int argc, char *argv[], void (*evCallback)(WiderApp &app))
 {
@@ -16,6 +17,7 @@ int wider::core::wider_main(int argc, char *argv[], void (*evCallback)(WiderApp 
 
         auto *pWindow = window.get();
         wider::ui::render::common::begin(pWindow);
+        wider::ui::layout::draw(pWindow);
         wider::ui::render::common::end(pWindow);
     }
     return 0;

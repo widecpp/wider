@@ -17,6 +17,8 @@ namespace wider::ui::window::sdl2
 
         void begin() override;
         void end() override;
+
+        void move(float x, float y) override;
     private:
         SDL_Window* window_ = nullptr;
         SDL_GLContext gl_context_ = nullptr;

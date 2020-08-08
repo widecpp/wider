@@ -26,4 +26,13 @@ Window::~Window()
     SDL_DestroyWindow(window_);
 }
 
+void Window::move(float x, float y)
+{
+	int tx, ty;
+	SDL_GetWindowPosition(window_, &tx, &ty);
+	tx += x;
+	ty += y;
+	SDL_SetWindowPosition(window_, tx, ty);
+}
+
 #endif // WIDER_SDL2_SYSTEM
