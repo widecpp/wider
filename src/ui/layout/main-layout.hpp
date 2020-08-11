@@ -10,6 +10,11 @@ namespace wider
 
     namespace ui
     {
+        namespace io
+        {
+            struct Data;
+        }
+
         namespace window
         {
             class Window;
@@ -22,10 +27,13 @@ namespace wider
             public:
                 MainLayout(wider::ui::window::Window* mainWindow, const wider::core::WiderApp &app);
 
-                void draw();
+                void draw(const wider::ui::io::Data &ioData);
             private:
                 wider::ui::window::Window* const mainWindow_;
                 const wider::core::WiderApp &app_;
+            private:
+                bool doMoveWindow_ = false;
+                int prevX_ = 0, prevY_ = 0;
             };
             
         }
