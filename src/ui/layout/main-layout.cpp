@@ -4,7 +4,15 @@
 #include "imgui.h"
 #include "imgui_internal.h"
 
-void wider::ui::layout::draw(wider::ui::window::Window* mainWindow)
+using namespace wider::ui::layout;
+
+MainLayout::MainLayout(wider::ui::window::Window* mainWindow, const wider::core::WiderApp &app) :
+	app_(app), mainWindow_(mainWindow)
+{
+
+}
+
+void MainLayout::draw()
 { 
     ImGui::BeginMainMenuBar();
 	/*if (ImGui::BeginMenu("File"))
