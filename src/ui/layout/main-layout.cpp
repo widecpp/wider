@@ -2,12 +2,14 @@
 #include "../window/common/window.hpp"
 #include "../io/data.hpp"
 
+#include "../../core/common/app.hpp"
+
 #include "imgui.h"
 #include "imgui_internal.h"
 
 using namespace wider::ui::layout;
 
-MainLayout::MainLayout(wider::ui::window::Window* mainWindow, const wider::core::WiderApp &app) :
+MainLayout::MainLayout(wider::ui::window::Window* mainWindow, wider::core::WiderApp &app) :
 	app_(app), mainWindow_(mainWindow)
 {
 
@@ -18,6 +20,9 @@ void MainLayout::draw(const wider::ui::io::Data &ioData)
     ImGui::BeginMainMenuBar();
 	if (ImGui::BeginMenu("File"))
 	{
+		if (ImGui::MenuItem("Exit")) {
+			app_.onQuitRequested();
+		}
 		ImGui::EndMenu();
 	}
 	ImGui::Separator();

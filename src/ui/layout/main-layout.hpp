@@ -25,12 +25,12 @@ namespace wider
             class MainLayout
             {
             public:
-                MainLayout(wider::ui::window::Window* mainWindow, const wider::core::WiderApp &app);
+                MainLayout(wider::ui::window::Window* mainWindow, wider::core::WiderApp &app);
 
                 void draw(const wider::ui::io::Data &ioData);
             private:
                 wider::ui::window::Window* const mainWindow_;
-                const wider::core::WiderApp &app_;
+                wider::core::WiderApp &app_;
             private:
                 bool doMoveWindow_ = false;
                 int prevX_ = 0, prevY_ = 0;
