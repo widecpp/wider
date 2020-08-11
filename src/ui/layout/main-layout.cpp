@@ -26,7 +26,7 @@ void MainLayout::draw(const wider::ui::io::Data &ioData)
 	auto width = window->Size.x - cur.x;
 	auto lineSize = window->DC.CurrLineSize;
 	ImVec2 min = cur, max { cur.x + width, lineSize.y };
-	if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+	if (ioData.mouse.left)
 	{
 		if (doMoveWindow_) {
 			auto dX = ioData.mouse.x - prevX_;

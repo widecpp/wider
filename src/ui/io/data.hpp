@@ -9,6 +9,10 @@ namespace wider::ui::io
         {
             int x;
             int y;
+
+            bool left;
+            bool right;
+            bool middle;
         } mouse;
     };
 }

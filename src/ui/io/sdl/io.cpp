@@ -5,7 +5,10 @@
 
 void wider::ui::io::sdl::begin(Data &data)
 {
-	SDL_GetGlobalMouseState(&data.mouse.x, &data.mouse.y);
+	auto state = SDL_GetGlobalMouseState(&data.mouse.x, &data.mouse.y);
+	data.mouse.left = state & SDL_BUTTON(SDL_BUTTON_LEFT);
+	data.mouse.right = state & SDL_BUTTON(SDL_BUTTON_RIGHT);
+	data.mouse.middle = state & SDL_BUTTON(SDL_BUTTON_MIDDLE);
 }
 
 void wider::ui::io::sdl::end(Data &data)
