@@ -19,7 +19,9 @@ jobs:
       run: ./thirdparty/vcpkg/bootstrap-vcpkg.sh
 
     - name: Install Dependency libraries
-      run: sudo apt-get install libgl-dev tree
+      run: |
+        sudo apt-get install libgl-dev tree clang-10
+        sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-10 30
       
     - name: Cache Binary VCPKG
       uses: actions/cache@v2.1.0
@@ -37,7 +39,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DVCPKG_TARGET_TRIPLET=x64-linux ..
+        cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DVCPKG_TARGET_TRIPLET=x64-linux ..
         make
         
     - name: Collect artifacts

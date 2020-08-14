@@ -7,6 +7,7 @@ No garbage collectors, no GUI freaze or lags.
 
 * CMake
 * vcpkg (instaled as submodule in thridparty/vcpkg)
+* Last version of MSVC or clang, that supports modules (GCC not supported yet =( )
 
 ## Configure vcpkg
 
