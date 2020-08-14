@@ -1,3 +1,6 @@
 [submodule "thirdparty/vcpkg"]
 	path = thirdparty/vcpkg
 	url = https://github.com/microsoft/vcpkg.git
+[submodule "thirdparty/CMakeCxxModules"]
+	path = thirdparty/CMakeCxxModules
+	url = https://github.com/NTSFka/CMakeCxxModules.git

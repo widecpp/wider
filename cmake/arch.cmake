@@ -4,3 +4,4 @@ function(target_arch_compile_options target)
     endif()
 endfunction()
 
+include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/CMakeCxxModules/CXXModules.cmake)
