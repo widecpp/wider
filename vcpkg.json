@@ -13,7 +13,8 @@
     },
     "toml11",
     "nlohmann-json",
-    "boost-dll"
+    "boost-dll",
+    "efsw"
   ]
 }
 
