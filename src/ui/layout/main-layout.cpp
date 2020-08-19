@@ -39,10 +39,17 @@ MainLayout::MainLayout(wider::ui::window::Window* mainWindow, wider::core::Wider
 }
 
 void MainLayout::draw(const wider::ui::io::Data &ioData)
-{ 
+{
+	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, {4.f, 8.f});
     ImGui::BeginMainMenuBar();
 	if (ImGui::BeginMenu("File"))
 	{
+		// Placeholders
+		ImGui::MenuItem("New");
+		ImGui::MenuItem("Open");
+		ImGui::MenuItem("Save");
+
+		ImGui::Separator();
 		if (ImGui::MenuItem("Exit")) {
 			app_.onQuitRequested();
 		}
@@ -59,4 +66,5 @@ void MainLayout::draw(const wider::ui::io::Data &ioData)
 	hitTestData_.draggable.maxX = max.x;
 	hitTestData_.draggable.maxY = max.y;
 	ImGui::EndMainMenuBar();
+	ImGui::PopStyleVar();
 }
