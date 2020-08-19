@@ -12,7 +12,15 @@ using namespace wider::ui::layout;
 MainLayout::MainLayout(wider::ui::window::Window* mainWindow, wider::core::WiderApp &app) :
 	app_(app), mainWindow_(mainWindow)
 {
-
+	mainWindow_->setHitTestCallback([this](int x, int y) -> wider::ui::window::WindowHitTest
+	{
+		if (x >= hitTestData_.draggable.minX && x <= hitTestData_.draggable.maxX &&
+			y >= hitTestData_.draggable.minY && y <= hitTestData_.draggable.maxY)
+		{
+			return wider::ui::window::WindowHitTest::Draggable;
+		}
+		return wider::ui::window::WindowHitTest::Normal;
+	});
 }
 
 void MainLayout::draw(const wider::ui::io::Data &ioData)
@@ -31,24 +39,9 @@ void MainLayout::draw(const wider::ui::io::Data &ioData)
 	auto width = window->Size.x - cur.x;
 	auto lineSize = window->DC.CurrLineSize;
 	ImVec2 min = cur, max { cur.x + width, lineSize.y };
-	if (ioData.mouse.left)
-	{
-		if (doMoveWindow_) {
-			auto dX = ioData.mouse.x - prevX_;
-			auto dY = ioData.mouse.y - prevY_;
-			mainWindow_->move(dX, dY);
-			prevX_ = ioData.mouse.x;
-			prevY_ = ioData.mouse.y;
-		}
-		if (ImGui::IsMouseHoveringRect(min, max)) {
-			prevX_ = ioData.mouse.x;
-			prevY_ = ioData.mouse.y;
-			doMoveWindow_ = true;
-		} 
-	}
-	else {
-		doMoveWindow_ = false;
-	}
-
+	hitTestData_.draggable.minX = min.x;
+	hitTestData_.draggable.minY = min.y;
+	hitTestData_.draggable.maxX = max.x;
+	hitTestData_.draggable.maxY = max.y;
 	ImGui::EndMainMenuBar();
 }

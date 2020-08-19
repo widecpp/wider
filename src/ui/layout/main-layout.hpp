@@ -31,9 +31,15 @@ namespace wider
             private:
                 wider::ui::window::Window* const mainWindow_;
                 wider::core::WiderApp &app_;
+
+                struct {
+                    struct {
+                        float minX, minY;
+                        float maxX, maxY;
+                    } draggable;
+                } hitTestData_ = {};
             private:
-                bool doMoveWindow_ = false;
-                int prevX_ = 0, prevY_ = 0;
+                void initHitTest();
             };
             
         }

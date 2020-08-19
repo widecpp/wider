@@ -2,9 +2,24 @@
 #define WINDOW_HPP
 
 #include <memory>
+#include <functional>
 
 namespace wider::ui::window
 {
+    enum class WindowHitTest
+    {
+        Normal,
+        Draggable,
+        ResizeTopLeft,
+        ResizeTop,
+        ResizeTopRight,
+        ResizeRight,
+        ResizeBottomRight,
+        ResizeBottom,
+        ResizeBottomLeft,
+        ResizeLeft,
+    };
+
     class Window
     {
     public:
@@ -12,6 +27,8 @@ namespace wider::ui::window
 
         virtual void begin() = 0;
         virtual void end() = 0;
+
+        virtual void setHitTestCallback(std::function<WindowHitTest(int x, int y)> hitTest) = 0;
         
         virtual void move(float x, float y) = 0;
 
