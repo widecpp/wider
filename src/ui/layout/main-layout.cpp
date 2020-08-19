@@ -14,11 +14,26 @@ MainLayout::MainLayout(wider::ui::window::Window* mainWindow, wider::core::Wider
 {
 	mainWindow_->setHitTestCallback([this](int x, int y) -> wider::ui::window::WindowHitTest
 	{
+		constexpr auto tolerance = 3;
+		auto [w, h] = mainWindow_->getSize();
+		wider::ui::window::WindowHitTest hitTest = wider::ui::window::WindowHitTest::Normal;
+		if (x >= 0 && x <= tolerance)
+			hitTest = hitTest | wider::ui::window::WindowHitTest::ResizeLeft;
+		if (y >= 0 && y <= tolerance)
+			hitTest = hitTest | wider::ui::window::WindowHitTest::ResizeTop;
+		if (x >= w - tolerance && x <= w)
+			hitTest = hitTest | wider::ui::window::WindowHitTest::ResizeRight;
+		if (y >= h - tolerance && y <= h)
+			hitTest = hitTest | wider::ui::window::WindowHitTest::ResizeBottom;
+		if (hitTest != wider::ui::window::WindowHitTest::Normal)
+			return hitTest;
+
 		if (x >= hitTestData_.draggable.minX && x <= hitTestData_.draggable.maxX &&
 			y >= hitTestData_.draggable.minY && y <= hitTestData_.draggable.maxY)
 		{
 			return wider::ui::window::WindowHitTest::Draggable;
 		}
+		
 		return wider::ui::window::WindowHitTest::Normal;
 	});
 }

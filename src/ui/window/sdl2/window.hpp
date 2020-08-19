@@ -16,11 +16,15 @@ namespace wider::ui::window::sdl2
         Window(int w, int h);
         ~Window();
 
+        static Window* getByHandle(SDL_Window* window);
+        static Window* getById(decltype(SDL_WindowEvent::windowID) windowId);
+
         void begin() override;
         void end() override;
 
         void setHitTestCallback(std::function<WindowHitTest(int x, int y)> hitTest) override;
 
+        std::pair<int, int> getSize() override;
         void move(float x, float y) override;
     private:
         SDL_Window* window_ = nullptr;

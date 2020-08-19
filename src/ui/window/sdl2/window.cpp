@@ -4,6 +4,7 @@
 #ifdef WIDER_SDL2_SYSTEM
 
 using namespace wider::ui::window::sdl2;
+constexpr char* windowClassKey = "wider_wnd";
 
 Window::Window(int w, int h)
 {
@@ -16,6 +17,7 @@ Window::Window(int w, int h)
         flags);
     if (!window_)
         throw std::runtime_error("Unable to create window!");
+	SDL_SetWindowData(window_, windowClassKey, this);
     configureGl(0, 0, w, h);
     initImgui();
 }
@@ -24,6 +26,23 @@ Window::~Window()
 {
     stopImgui();
     SDL_DestroyWindow(window_);
+}
+
+Window* Window::getByHandle(SDL_Window* window)
+{
+	return static_cast<Window*>(SDL_GetWindowData(window, windowClassKey));
+}
+
+Window* Window::getById(decltype(SDL_WindowEvent::windowID) windowId)
+{
+	return getByHandle(SDL_GetWindowFromID(windowId));
+}
+
+std::pair<int, int> Window::getSize()
+{
+	std::pair<int, int> size = {};
+	SDL_GetWindowSize(window_, &size.first, &size.second);
+	return size;
 }
 
 void Window::move(float x, float y)
@@ -46,7 +65,22 @@ void Window::setHitTestCallback(std::function<WindowHitTest(int x, int y)> hitTe
 		{
 		case WindowHitTest::Draggable:
 			return SDL_HITTEST_DRAGGABLE;
-		// TODO: [OOKAMI] Make resize;
+		case WindowHitTest::ResizeTopLeft:
+			return SDL_HITTEST_RESIZE_TOPLEFT;
+		case WindowHitTest::ResizeTop:
+			return SDL_HITTEST_RESIZE_TOP;
+		case WindowHitTest::ResizeTopRight:
+			return SDL_HITTEST_RESIZE_TOPRIGHT;
+		case WindowHitTest::ResizeRight:
+			return SDL_HITTEST_RESIZE_RIGHT;
+		case WindowHitTest::ResizeBottomRight:
+			return SDL_HITTEST_RESIZE_BOTTOMRIGHT;
+		case WindowHitTest::ResizeBottom:
+			return SDL_HITTEST_RESIZE_BOTTOM;
+		case WindowHitTest::ResizeBottomLeft:
+			return SDL_HITTEST_RESIZE_BOTTOMLEFT;
+		case WindowHitTest::ResizeLeft:
+			return SDL_HITTEST_RESIZE_LEFT;
 		default:
 			return SDL_HITTEST_NORMAL;
 		}
