@@ -9,7 +9,7 @@ constexpr char* windowClassKey = "wider_wnd";
 Window::Window(int w, int h)
 {
     const auto flags = 
-        SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_RESIZABLE | // window flags
+        SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | // window flags
         SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI; // graphics flags
     window_ = SDL_CreateWindow("wIDEr",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
@@ -20,6 +20,9 @@ Window::Window(int w, int h)
 	SDL_SetWindowData(window_, windowClassKey, this);
     configureGl(0, 0, w, h);
     initImgui();
+	// Fix bug with resizing borderless window. (SDL 2.0.12)
+	// Declaring by `SDL_WINDOW_RESIZABLE` flag on creation not helps
+	SDL_SetWindowResizable(window_, SDL_TRUE);
 }
 
 Window::~Window()
@@ -45,7 +48,7 @@ std::pair<int, int> Window::getSize()
 	return size;
 }
 
-void Window::move(float x, float y)
+void Window::move(int x, int y)
 {
 	int tx, ty;
 	SDL_GetWindowPosition(window_, &tx, &ty);

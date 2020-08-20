@@ -25,7 +25,7 @@ namespace wider::ui::window::sdl2
         void setHitTestCallback(std::function<WindowHitTest(int x, int y)> hitTest) override;
 
         std::pair<int, int> getSize() override;
-        void move(float x, float y) override;
+        void move(int x, int y) override;
     private:
         SDL_Window* window_ = nullptr;
         SDL_GLContext gl_context_ = nullptr;

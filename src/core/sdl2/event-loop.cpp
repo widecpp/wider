@@ -21,9 +21,7 @@ void wider::core::sdl2::handleEvents(WiderApp &app)
 			switch (event.window.event)
 			{
 			case SDL_WindowEventID::SDL_WINDOWEVENT_HIT_TEST:
-				// TODO: [OOKAMI] Resize?
 				auto* wnd = wider::ui::window::sdl2::Window::getById(event.window.windowID);
-				SDL_Log("%i %i", event.window.data1, event.window.data2);
 				break;
 			}
 			//SDL_Log("%i", event.window.event);

@@ -40,7 +40,7 @@ namespace wider::ui::window
         virtual void setHitTestCallback(std::function<WindowHitTest(int x, int y)> hitTest) = 0;
         
         virtual std::pair<int, int> getSize() = 0;
-        virtual void move(float x, float y) = 0;
+        virtual void move(int x, int y) = 0;
 
         static std::unique_ptr<Window> create(int w, int h);
     protected:
