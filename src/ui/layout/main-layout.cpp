@@ -40,6 +40,13 @@ MainLayout::MainLayout(wider::ui::window::Window* mainWindow, wider::core::Wider
 
 void MainLayout::draw(const wider::ui::io::Data &ioData)
 {
+	drawCaption();
+	drawSideBar();
+	drawStatusBar();
+}
+
+void MainLayout::drawCaption()
+{
 	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, {4.f, 8.f});
     ImGui::BeginMainMenuBar();
 	if (ImGui::BeginMenu("File"))
@@ -67,4 +74,35 @@ void MainLayout::draw(const wider::ui::io::Data &ioData)
 	hitTestData_.draggable.maxY = max.y;
 	ImGui::EndMainMenuBar();
 	ImGui::PopStyleVar();
+}
+
+void MainLayout::drawSideBar()
+{
+
+}
+
+void MainLayout::drawStatusBar()
+{
+	ImGuiContext& g = *GImGui;
+
+	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, {4.f, 8.f});
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, ImVec2(0, 0));
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4 {0.f / 255, 122.f / 255, 204.f / 255, 255.f / 255});
+
+	ImGui::SetNextWindowPos(ImVec2(0.0f, g.IO.DisplaySize.y - (g.Style.FramePadding.y + g.FontBaseSize)));
+	ImGui::SetNextWindowSize(ImVec2(g.IO.DisplaySize.x, g.FontBaseSize + g.Style.FramePadding.y));
+
+	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove 
+		| ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings;
+	bool is_open = ImGui::Begin("##MainStatusBar", NULL, window_flags);
+
+	ImGui::PopStyleVar(3);
+	ImGui::PopStyleColor();
+
+	if (is_open)
+	{
+		ImGui::Text("wIDEr is ready!");
+		ImGui::End();
+	}
 }

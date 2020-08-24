@@ -40,6 +40,10 @@ namespace wider
                 } hitTestData_ = {};
             private:
                 void initHitTest();
+
+                void drawCaption();
+                void drawSideBar();
+                void drawStatusBar();
             };
             
         }
