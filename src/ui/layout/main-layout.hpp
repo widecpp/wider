@@ -39,11 +39,14 @@ namespace wider
                     } draggable;
                 } hitTestData_ = {};
             private:
-                void initHitTest();
-
                 void drawCaption();
                 void drawSideBar();
                 void drawStatusBar();
+
+                bool beginStatusBar();
+                void endStatusBar();
+
+                void initHitTest();
             };
             
         }
