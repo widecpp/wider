@@ -38,13 +38,30 @@ namespace wider
                         float maxX, maxY;
                     } draggable;
                 } hitTestData_ = {};
+
+                struct {
+                    float posMenuY;
+                    float sizeMenuY;
+                    float posStatusBarY;
+                    float sizeStatusBarY;
+
+                    float posSizeBarX;
+                    float sizeSideBarX;
+                } drawData_ = {};
             private:
                 void drawCaption();
                 void drawSideBar();
                 void drawStatusBar();
+                void drawBody();
 
                 bool beginStatusBar();
                 void endStatusBar();
+
+                bool beginSideBar();
+                void endSideBar();
+
+                bool beginBody();
+                void endBody();
 
                 void initHitTest();
             };
