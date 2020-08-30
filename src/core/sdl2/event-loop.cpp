@@ -10,7 +10,7 @@ void wider::core::sdl2::handleEvents(WiderApp &app)
 {
     SDL_Event event;
 	int i = 1;
-    if (SDL_PollEvent(&event)) {
+    if (SDL_WaitEventTimeout(&event, 100)) {
         ImGui_ImplSDL2_ProcessEvent(&event);
         switch (event.type)
         {
