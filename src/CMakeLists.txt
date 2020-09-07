@@ -5,11 +5,10 @@ set(WIDER_SOURCE ${SRC_FILES})
 #Executable
 add_module_executable(wider WIN32 ${WIDER_SOURCE})
 #Compiler dirs
+target_include_directories(wider PRIVATE ${PROJECT_SOURCE_DIR}/src)
 target_include_directories(wider PRIVATE ${BOOST_DLL_INCLUDE_DIRS})
 #Compile options
 target_arch_compile_options(wider)
 #Linking
-target_link_libraries(wider PRIVATE SDL2::SDL2 SDL2::SDL2main)
-target_link_libraries(wider PRIVATE imgui::imgui)
-target_link_libraries(wider PRIVATE glad::glad)
-target_link_libraries(wider PRIVATE ${OPENGL_LIBRARIES})
+
+#

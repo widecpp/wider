@@ -4,13 +4,7 @@
   "homepage": "https://github.com/faserg1/wider",
   "description": "Fresh, fast, extensible and cross-platform IDE.",
   "dependencies": [
-    "sdl2",
-    "opengl",
-    "glad",
-    {
-      "name": "imgui",
-      "features": ["sdl2-binding", "opengl3-glad-binding"]
-    },
+    "gtkmm",
     "toml11",
     "nlohmann-json",
     "boost-dll",
