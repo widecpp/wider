@@ -10,5 +10,5 @@ target_include_directories(wider PRIVATE ${BOOST_DLL_INCLUDE_DIRS})
 #Compile options
 target_arch_compile_options(wider)
 #Linking
-
+target_link_libraries(wider PRIVATE ${GTKMM_LIBRARIES})
 #
