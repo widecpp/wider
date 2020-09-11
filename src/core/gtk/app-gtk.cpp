@@ -2,6 +2,7 @@
 #include "ui/window/gtk/window-gtk.hpp"
 #include <gtkmm/application.h>
 #include <gtkmm/window.h>
+#include <algorithm>
 
 using namespace wider::core;
 
@@ -23,15 +24,19 @@ AppGtk::~AppGtk()
 {
 }
 
-int AppGtk::run()
+int AppGtk::run(wider::ui::window::Window *wnd)
 {
 	initApp();
-	return impl_->app->run();
+	auto windowGtk = dynamic_cast<wider::ui::window::WindowGtk*>(wnd);
+	auto handle = static_cast<Gtk::Window*>(windowGtk->getHandle());
+	return impl_->app->run(*handle);
 }
 
 void AppGtk::onWindowAdded(wider::ui::window::Window *wnd)
 {
 	auto windowGtk = dynamic_cast<wider::ui::window::WindowGtk*>(wnd);
 	auto handle = static_cast<Gtk::Window*>(windowGtk->getHandle());
-	impl_->app->add_window(*handle);
+	auto windows = impl_->app->get_windows();
+	if (std::find(windows.begin(), windows.end(), handle) == windows.end())
+		impl_->app->add_window(*handle);
 }

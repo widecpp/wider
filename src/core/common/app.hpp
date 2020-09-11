@@ -13,7 +13,7 @@ namespace wider::core
     class WiderApp
     {
     public:
-        virtual int run() = 0;
+        virtual int run(wider::ui::window::Window *wnd) = 0;
         virtual void onWindowAdded(wider::ui::window::Window *wnd) = 0;
 
         static std::unique_ptr<WiderApp> createApp(int argc, char **argv);

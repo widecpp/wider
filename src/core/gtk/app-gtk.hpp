@@ -13,7 +13,7 @@ namespace wider::core
         AppGtk(int argc, char **argv);
         ~AppGtk();
 
-        int run() override;
+        int run(wider::ui::window::Window *wnd) override;
         void onWindowAdded(wider::ui::window::Window *wnd) override;
     private:
         AppGtk(const AppGtk &) = delete;
