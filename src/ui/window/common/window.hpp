@@ -7,24 +7,36 @@
 
 #include "ui/window/common/window-data.hpp"
 
-namespace wider::ui::window
+namespace wider
 {
-    class Window
+    namespace core
     {
-    public:
-        virtual ~Window() = default;
+        class WiderApp;
+    }
 
-        // virtual void setHitTestCallback(std::function<WindowHitTest(int x, int y)> hitTest) = 0;
-        
-        virtual WindowSize getSize() const = 0;
-        virtual void move(int x, int y) = 0;
+    namespace ui::window
+    {
+        class Window
+        {
+        public:
+            virtual ~Window() = default;
 
-        static std::unique_ptr<Window> create(int w, int h);
-    protected:
-        Window() = default;
-    private:
-        Window(const Window&) = delete;
-    };
+            // virtual void setHitTestCallback(std::function<WindowHitTest(int x, int y)> hitTest) = 0;
+            
+            virtual WindowSize getSize() const = 0;
+            virtual void move(int x, int y) = 0;
+
+            static std::unique_ptr<Window> create(wider::core::WiderApp &app, int w, int h);
+        protected:
+            Window(wider::core::WiderApp &app);
+            void onInitialized();
+
+            wider::core::WiderApp &app_;
+        private:
+            Window(const Window&) = delete;
+        };
+    }
+    
 }
 
 #endif // WINDOW_HPP

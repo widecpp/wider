@@ -1,4 +1,6 @@
 #include "app.hpp"
+#include "core/gtk/app-gtk.hpp"
+
 using namespace wider::core;
 
 WiderApp::WiderApp(int argc, char **argv) :
@@ -7,12 +9,12 @@ WiderApp::WiderApp(int argc, char **argv) :
 
 }
 
-void WiderApp::onQuitRequested()
+std::unique_ptr<WiderApp> WiderApp::createApp(int argc, char **argv)
 {
-    quitRequested_ = true;
+	return std::make_unique<AppGtk>(argc, argv);
 }
 
-bool WiderApp::quitRequested()
+void WiderApp::initApp()
 {
-    return quitRequested_;
+
 }

@@ -2,6 +2,7 @@
 #define WINDOW_GTK
 
 #include "ui/window/common/window.hpp"
+#include <memory>
 
 namespace wider::ui::window
 {
@@ -9,10 +10,16 @@ namespace wider::ui::window
         public Window
     {
     public:
-        WindowGtk(int width, int height);
+        WindowGtk(wider::core::WiderApp &app, int width, int height);
+        ~WindowGtk();
 
         WindowSize getSize() const override;
         void move(int x, int y) override;
+
+        void *getHandle();
+    private:
+        struct Impl;
+        std::unique_ptr<Impl> impl_;
     };
 }
 

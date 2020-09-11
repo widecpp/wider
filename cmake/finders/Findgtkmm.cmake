@@ -4,6 +4,7 @@
 endif(GTKMM_INCLUDE_DIR)
 
 find_package(glib)
+find_package(sigc)
 if(GLIB_FOUND)
 	find_path(GTKMM_INCLUDE_DIR gtkmm/application.h)
 	find_library(GTKMM_LIBRARY
@@ -17,7 +18,7 @@ if(GLIB_FOUND)
 endif(GLIB_FOUND)
 
 if(GTKMM_FOUND)
-  set(GTKMM_LIBRARIES ${GTKMM_LIBRARY} ${GLIB_LIBRARIES})
+  set(GTKMM_LIBRARIES ${GTKMM_LIBRARY} ${GLIB_LIBRARIES} ${SIGC_LIBRARIES})
 else(GTKMM_FOUND)
   set(GTKMM_LIBRARIES)
 endif(GTKMM_FOUND)

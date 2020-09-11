@@ -1,23 +1,32 @@
 #ifndef APP_HPP
 #define APP_HPP
 
+#include <memory>
+
+namespace wider::ui::window
+{
+    class Window;
+}
+
 namespace wider::core
 {
     class WiderApp
     {
     public:
-        WiderApp(int argc, char **argv);
+        virtual int run() = 0;
+        virtual void onWindowAdded(wider::ui::window::Window *wnd) = 0;
 
-        bool quitRequested();
-    public: // events
-        // void onSomething();
-        void onQuitRequested();
-    private:
+        static std::unique_ptr<WiderApp> createApp(int argc, char **argv);
+    protected:
+        WiderApp(int argc, char **argv);
+        void initApp();
+
         struct {
             int argc;
             char **argv;
         } const args_;
-        bool quitRequested_ = false;
+    private:
+        WiderApp(const WiderApp &) = delete;
     };
 }
 
