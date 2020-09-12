@@ -15,6 +15,7 @@ namespace wider::ui::window
 
         WindowSize getSize() const override;
         void move(int x, int y) override;
+        void applyLayout(wider::ui::layout::Layout *layout) override;
 
         void *getHandle();
     private:

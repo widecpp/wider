@@ -14,6 +14,11 @@ namespace wider
         class WiderApp;
     }
 
+    namespace ui::layout
+    {
+        class Layout;
+    }
+
     namespace ui::window
     {
         class Window
@@ -25,6 +30,7 @@ namespace wider
             
             virtual WindowSize getSize() const = 0;
             virtual void move(int x, int y) = 0;
+            virtual void applyLayout(wider::ui::layout::Layout *layout) = 0;
 
             static std::unique_ptr<Window> create(wider::core::WiderApp &app, int w, int h);
         protected:
