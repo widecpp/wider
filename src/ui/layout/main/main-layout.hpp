@@ -11,6 +11,9 @@ namespace wider::ui::layout
         public Layout, public Gtk::DrawingArea
     {
     public:
+    protected:
+        // Override default signal handler:
+        bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
     };
 }
 
