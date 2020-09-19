@@ -1,7 +1,6 @@
 ﻿#include "ui/window/gtk/window-gtk.hpp"
 #include "ui/layout/common/layout.hpp"
 #include <gtkmm/window.h>
-#include <gtkmm/drawingarea.h>
 #include <vector>
 #include <memory>
 using namespace wider::ui::window;
@@ -18,10 +17,10 @@ namespace wider::ui::window
 WindowGtk::WindowGtk(wider::core::WiderApp &app, int width, int height) :
 	Window(app), impl_(std::make_unique<Impl>())
 {
+	impl_->window.set_size_request(200, 100);
 	impl_->window.resize(width, height);
 	impl_->window.set_title("wIDEr");
 	impl_->window.set_decorated(false);
-	impl_->window.override_background_color(Gdk::RGBA("#333333"));
 	onInitialized();
 }
 
@@ -42,9 +41,9 @@ void WindowGtk::move(int x, int y)
 void WindowGtk::applyLayout(wider::ui::layout::Layout *layout)
 {
 	impl_->layouts.push_back(layout->shared_from_this());
-	auto drawArea = dynamic_cast<Gtk::DrawingArea*>(layout);
-	impl_->window.add(*drawArea);
-	drawArea->show();
+	auto widget = dynamic_cast<Gtk::Widget*>(layout);
+	impl_->window.add(*widget);
+	widget->show();
 }
 
 void *WindowGtk::getHandle()
