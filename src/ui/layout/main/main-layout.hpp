@@ -17,6 +17,8 @@ namespace wider::ui::layout
 
         bool on_motion_notify_event(GdkEventMotion *event) override;
         bool on_button_press_event(GdkEventButton* event) override;
+    private:
+        int getBorder(int x, int y);
     };
 }
 
