@@ -3,7 +3,8 @@
 #include <gdkmm/device.h>
 using namespace wider::ui::layout;
 
-namespace {
+namespace
+{
     enum Border : int
     {
         BorderNone = 0x0,
@@ -117,7 +118,7 @@ bool MainLayout::on_draw(Cairo::RefPtr<Cairo::Context> const & cr)
 bool MainLayout::on_motion_notify_event(GdkEventMotion *event)
 {
     auto wnd = get_window()->get_toplevel();
-    auto border = this->getBorder(event->x, event->y);
+    auto border = this->getBorder((int) event->x, (int) event->y);
     if (border)
     {
         auto cur = Gdk::Cursor::create(getCursorType(border));
@@ -134,14 +135,14 @@ bool MainLayout::on_button_press_event(GdkEventButton* event)
     auto wnd = get_window()->get_toplevel();
     if (event->type == GDK_BUTTON_PRESS && event->button == 1)
     {
-        auto border = this->getBorder(event->x, event->y);
+        auto border = this->getBorder((int) event->x, (int) event->y);
         if (border)
         {
             auto edge = getEdge(border);
-            wnd->begin_resize_drag(edge, event->button, event->x_root, event->y_root, event->time);
+            wnd->begin_resize_drag(edge, event->button, (int) event->x_root, (int) event->y_root, event->time);
         }
         else if (event->y < 30)
-            wnd->begin_move_drag(event->button, event->x_root, event->y_root, event->time);
+            wnd->begin_move_drag(event->button, (int) event->x_root, (int) event->y_root, event->time);
     }
     
     this->queue_draw();
