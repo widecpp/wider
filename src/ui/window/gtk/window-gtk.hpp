@@ -19,6 +19,8 @@ namespace wider::ui::window
 
         void *getHandle();
     private:
+        int getBorder(int x, int y);
+    private:
         struct Impl;
         std::unique_ptr<Impl> impl_;
     };

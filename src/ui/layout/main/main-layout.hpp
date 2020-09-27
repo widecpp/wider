@@ -4,21 +4,25 @@
 #include "ui/layout/common/layout.hpp"
 #include <gtkmm.h>
 #include <gtkmm/drawingarea.h>
+#include <gtkmm/hvbox.h>
+
+#include "title-bar-layout.hpp"
+#include "status-bar-layout.hpp"
+#include "side-bar-layout.hpp"
+#include "panel-area-layout.hpp"
+#include "client-area-layout.hpp"
 
 namespace wider::ui::layout
 {
     class MainLayout :
-        public Layout, public Gtk::DrawingArea
+        public Layout, public Gtk::VBox
     {
     public:
         MainLayout();
-    protected:
-        bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
-
-        bool on_motion_notify_event(GdkEventMotion *event) override;
-        bool on_button_press_event(GdkEventButton* event) override;
     private:
-        int getBorder(int x, int y);
+        Gtk::HBox hbox_;
+        TitleBarLayout title_;
+        StatusBarLayout status_;
     };
 }
 
