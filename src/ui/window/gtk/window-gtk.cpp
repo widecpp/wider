@@ -105,15 +105,24 @@ WindowGtk::WindowGtk(wider::core::WiderApp &app, int width, int height) :
 	impl_->window.set_title("wIDEr");
 	impl_->window.set_decorated(false);
     impl_->window.add_events(Gdk::POINTER_MOTION_MASK);
+    impl_->window.signal_realize().connect([this]()
+    {
+        impl_->window.get_window()->set_event_compression(false);
+    });
 	onInitialized();
 
     std::cout << impl_->window.gobj() << std::endl;
 
 	impl_->window.signal_motion_notify_event().connect([this](GdkEventMotion *event) -> bool
 	{
-        std::cout << event->window << ": " << (int) event->x << ", " << (int) event->y << std::endl;
-		auto border = this->getBorder((int) event->x, (int) event->y);
-		auto wnd = impl_->window.get_window();
+        int sx, sy;
+        impl_->window.get_position(sx, sy);
+        int relX = event->x_root - sx, relY = event->y_root - sy;
+        auto wnd = impl_->window.get_window();
+        
+        std::cout << event->window << ": " << relX << ", " << relY << std::endl;
+		auto border = this->getBorder(relX, relY);
+		
 		if (border)
 		{
 			auto cur = Gdk::Cursor::create(getCursorType(border));
@@ -128,7 +137,10 @@ WindowGtk::WindowGtk(wider::core::WiderApp &app, int width, int height) :
 	{
 		if (event->type == GDK_BUTTON_PRESS && event->button == 1)
 		{
-			auto border = this->getBorder((int) event->x, (int) event->y);
+            int sx, sy;
+            impl_->window.get_position(sx, sy);
+            int relX = event->x_root - sx, relY = event->y_root - sy;
+			auto border = this->getBorder(relX, relY);
 			if (border)
 			{
 				auto edge = getEdge(border);

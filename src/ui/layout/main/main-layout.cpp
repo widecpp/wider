@@ -7,9 +7,9 @@ using namespace wider::ui::layout;
 MainLayout::MainLayout()
 {
     // add_events(Gdk::BUTTON1_MOTION_MASK | Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
-    this->pack_start(title_);
+    this->pack_start(title_, Gtk::PACK_SHRINK);
     this->pack_start(hbox_);
-    this->pack_start(status_);
+    this->pack_start(status_, Gtk::PACK_SHRINK);
     this->show_all();
 }
 

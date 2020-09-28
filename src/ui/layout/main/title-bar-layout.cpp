@@ -12,11 +12,13 @@ bool TitleBarLayout::on_draw(Cairo::RefPtr<Cairo::Context> const & cr)
 {
     auto isActive = get_window()->get_toplevel()->get_state() == Gdk::WINDOW_STATE_FOCUSED;
     Gdk::RGBA headerColor((isActive ? "#3c3c3c" : "#333333"));
+    auto h = this->get_height();
+    auto w = this->get_width();
     /*Gdk::RGBA backColor("#252526");
     Gdk::RGBA sideColor("#333333");
     Gdk::RGBA statusColor("#007acc");*/
 	cr->set_source_rgb(headerColor.get_red(), headerColor.get_green(), headerColor.get_blue());
-    cr->rectangle(0, 0, this->get_width(), 30);
+    cr->rectangle(0, 0, w, 30);
     cr->fill();
 
     /*cr->set_source_rgb(statusColor.get_red(), statusColor.get_green(), statusColor.get_blue());
