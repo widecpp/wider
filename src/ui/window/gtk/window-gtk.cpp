@@ -5,7 +5,6 @@
 #include <memory>
 using namespace wider::ui::window;
 
-#include <iostream>
 namespace wider::ui::window
 {
 	struct WindowGtk::Impl
@@ -111,16 +110,13 @@ WindowGtk::WindowGtk(wider::core::WiderApp &app, int width, int height) :
     });
 	onInitialized();
 
-    std::cout << impl_->window.gobj() << std::endl;
-
 	impl_->window.signal_motion_notify_event().connect([this](GdkEventMotion *event) -> bool
 	{
         int sx, sy;
         impl_->window.get_position(sx, sy);
-        int relX = event->x_root - sx, relY = event->y_root - sy;
+        int relX = (int) event->x_root - sx, relY = (int) event->y_root - sy;
         auto wnd = impl_->window.get_window();
         
-        std::cout << event->window << ": " << relX << ", " << relY << std::endl;
 		auto border = this->getBorder(relX, relY);
 		
 		if (border)
@@ -139,7 +135,7 @@ WindowGtk::WindowGtk(wider::core::WiderApp &app, int width, int height) :
 		{
             int sx, sy;
             impl_->window.get_position(sx, sy);
-            int relX = event->x_root - sx, relY = event->y_root - sy;
+            int relX = (int) event->x_root - sx, relY = (int) event->y_root - sy;
 			auto border = this->getBorder(relX, relY);
 			if (border)
 			{

@@ -23,6 +23,10 @@ namespace wider::ui::layout
         Gtk::HBox hbox_;
         TitleBarLayout title_;
         StatusBarLayout status_;
+        
+        SideBarLayout side_;
+        PanelAreaLayout panel_;
+        ClientAreaLayout client_;
     };
 }
 
