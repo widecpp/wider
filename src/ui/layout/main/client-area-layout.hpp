@@ -16,6 +16,8 @@ namespace wider::ui::layout
 
         bool on_motion_notify_event(GdkEventMotion *event) override;
         bool on_button_press_event(GdkEventButton* event) override;
+    private:
+        void draw_text(const std::string &text, const Cairo::RefPtr<Cairo::Context>& cr, double px, double py, double scale);
     };
 }
 
