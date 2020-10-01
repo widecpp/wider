@@ -2,12 +2,12 @@
 #define CLIENT_AREA_LAYOUT
 
 #include <gtkmm.h>
-#include <gtkmm/drawingarea.h>
+#include <gtkmm/layout.h>
 
 namespace wider::ui::layout
 {
     class ClientAreaLayout :
-        public Gtk::DrawingArea
+        public Gtk::Layout
     {
     public:
         ClientAreaLayout();

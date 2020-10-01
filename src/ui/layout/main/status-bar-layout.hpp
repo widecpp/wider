@@ -2,12 +2,12 @@
 #define STATUS_BAR_LAYOUT
 
 #include <gtkmm.h>
-#include <gtkmm/drawingarea.h>
+#include <gtkmm/layout.h>
 
 namespace wider::ui::layout
 {
     class StatusBarLayout :
-        public Gtk::DrawingArea
+        public Gtk::Layout
     {
     public:
         StatusBarLayout();

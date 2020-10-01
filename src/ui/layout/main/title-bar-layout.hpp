@@ -2,12 +2,12 @@
 #define TITLE_BAR_LAYOUT
 
 #include <gtkmm.h>
-#include <gtkmm/drawingarea.h>
+#include <gtkmm/layout.h>
 
 namespace wider::ui::layout
 {
     class TitleBarLayout :
-        public Gtk::DrawingArea
+        public Gtk::Layout
     {
     public:
         TitleBarLayout();

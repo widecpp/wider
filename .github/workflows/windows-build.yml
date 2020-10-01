@@ -1,0 +1,45 @@
+name: CD-linux
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Checkout submodules
+      run: git submodule update --init --recursive --remote
+
+    - name: Configure VCPKG
+      run: .\thirdparty\vcpkg\bootstrap-vcpkg.bat
+      
+    - name: Cache Binary VCPKG
+      uses: actions/cache@v2.1.0
+      with:
+        path: |
+          .\thirdparty\vcpkg\archives
+        key: vcpkg-archive-win
+      
+    - name: Install Dependencies
+      run: .\thirdparty\vcpkg\vcpkg --x-manifest-root=. install
+
+    - name: Build project
+      run: |
+        call C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat
+        mkdir build
+        cd build
+        cmake -DVCPKG_TARGET_TRIPLET=x64-windows ..
+        make
+        
+    - name: Collect artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-windows
+        path: |
+          .\build\bin\**\*
+          .\build\lib\**\*

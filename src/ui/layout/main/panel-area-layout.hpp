@@ -2,12 +2,12 @@
 #define PANEL_AREA_LAYOUT
 
 #include <gtkmm.h>
-#include <gtkmm/drawingarea.h>
+#include <gtkmm/layout.h>
 
 namespace wider::ui::layout
 {
     class PanelAreaLayout :
-        public Gtk::DrawingArea
+        public Gtk::Layout
     {
     public:
         PanelAreaLayout();
