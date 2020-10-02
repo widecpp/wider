@@ -28,7 +28,8 @@ jobs:
     - name: Install Dependencies
       run: .\thirdparty\vcpkg\vcpkg --x-manifest-root=. install
 
-    - name: Build project
+    - shell: cmd
+      name: Build project
       run: |
         call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
         mkdir build

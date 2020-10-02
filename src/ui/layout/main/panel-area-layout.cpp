@@ -5,6 +5,9 @@ PanelAreaLayout::PanelAreaLayout()
 {
     add_events(Gdk::BUTTON1_MOTION_MASK | Gdk::BUTTON_PRESS_MASK | Gdk::POINTER_MOTION_MASK);
     this->set_size_request(200, -1);
+
+    this->put(fileTree_, 0, 0);
+    this->fileTree_.set_size_request(200, -1);
 }
 
 bool PanelAreaLayout::on_draw(Cairo::RefPtr<Cairo::Context> const & cr)

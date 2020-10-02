@@ -3,6 +3,7 @@
 
 #include <gtkmm.h>
 #include <gtkmm/layout.h>
+#include <gtkmm/treeview.h>
 
 namespace wider::ui::layout
 {
@@ -16,6 +17,9 @@ namespace wider::ui::layout
 
         bool on_motion_notify_event(GdkEventMotion *event) override;
         bool on_button_press_event(GdkEventButton* event) override;
+    private:
+        // Временно, потом уберем нахрен отсюда в апишку
+        Gtk::TreeView fileTree_;
     };
 }
 
