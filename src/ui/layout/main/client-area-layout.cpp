@@ -18,7 +18,7 @@ bool ClientAreaLayout::on_draw(Cairo::RefPtr<Cairo::Context> const & cr)
     cr->fill();
 
     this->draw_text("Nice text", cr, 300, 20, 1);
-	return true;
+	return Gtk::Layout::on_draw(cr);
 }
 
 bool ClientAreaLayout::on_motion_notify_event(GdkEventMotion *event)

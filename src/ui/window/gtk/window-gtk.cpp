@@ -142,7 +142,7 @@ WindowGtk::WindowGtk(wider::core::WiderApp &app, int width, int height) :
 				auto edge = getEdge(border);
 				impl_->window.begin_resize_drag(edge, event->button, (int) event->x_root, (int) event->y_root, event->time);
 			}
-			else if (event->y < 30)
+			else if (relY < 30)
 				impl_->window.begin_move_drag(event->button, (int) event->x_root, (int) event->y_root, event->time);
 		}
 		

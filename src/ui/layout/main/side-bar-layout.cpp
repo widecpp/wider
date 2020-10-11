@@ -17,7 +17,7 @@ bool SideBarLayout::on_draw(Cairo::RefPtr<Cairo::Context> const & cr)
     cr->rectangle(0, 0, 48, this->get_height());
     cr->fill();
 
-	return true;
+	return Gtk::Layout::on_draw(cr);
 }
 
 bool SideBarLayout::on_motion_notify_event(GdkEventMotion *event)

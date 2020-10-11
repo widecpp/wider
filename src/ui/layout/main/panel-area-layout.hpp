@@ -4,6 +4,7 @@
 #include <gtkmm.h>
 #include <gtkmm/layout.h>
 #include <gtkmm/treeview.h>
+#include <gtkmm/treestore.h>
 
 namespace wider::ui::layout
 {
@@ -18,8 +19,16 @@ namespace wider::ui::layout
         bool on_motion_notify_event(GdkEventMotion *event) override;
         bool on_button_press_event(GdkEventButton* event) override;
     private:
+
+        class FileModelColumns : public Gtk::TreeModel::ColumnRecord
+        {
+        public:
+            Gtk::TreeModelColumn<Glib::ustring> filename;
+            FileModelColumns() { add(filename);}
+        } columns_;
         // Временно, потом уберем нахрен отсюда в апишку
         Gtk::TreeView fileTree_;
+        Glib::RefPtr<Gtk::TreeStore> fileStore_;
     };
 }
 

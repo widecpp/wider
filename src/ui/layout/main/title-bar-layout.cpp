@@ -16,7 +16,7 @@ bool TitleBarLayout::on_draw(Cairo::RefPtr<Cairo::Context> const & cr)
 	cr->set_source_rgb(headerColor.get_red(), headerColor.get_green(), headerColor.get_blue());
     cr->rectangle(0, 0, w, 30);
     cr->fill();
-	return true;
+	return Gtk::Layout::on_draw(cr);
 }
 
 bool TitleBarLayout::on_motion_notify_event(GdkEventMotion *event)

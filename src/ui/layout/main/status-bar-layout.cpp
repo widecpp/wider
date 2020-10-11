@@ -15,7 +15,7 @@ bool StatusBarLayout::on_draw(Cairo::RefPtr<Cairo::Context> const & cr)
     cr->set_source_rgb(statusColor.get_red(), statusColor.get_green(), statusColor.get_blue());
     cr->rectangle(0, h - 22, w, 22);
     cr->fill();
-	return true;
+	return Gtk::Layout::on_draw(cr);
 }
 
 bool StatusBarLayout::on_motion_notify_event(GdkEventMotion *event)
